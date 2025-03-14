@@ -129,13 +129,13 @@ def install_apktool(install_path, version='2.11.1'):
         url = ('https://github.com/iBotPeaches/Apktool/releases/download/'
                f'v{version}/apktool_{version}.jar')
         apktool_dir = Path(install_path)  / 'apktool'        
-        apktool_path = apktool_dir / 'apktool.jar'
+        apktool_path = apktool_dir / f"apktool_{version}.jar"
 
         if not apktool_dir.exists():
             os.makedirs(apktool_dir)
             
         if apktool_path.exists():
-            logger.info('APKTool is already installed at %s', apktool_dir)
+            logger.info('APKTool is already installed at %s', apktool_path)
             return
 
         logger.info('Downloading APKTool from %s', url)
