@@ -39,7 +39,7 @@ def main():
     # TODO run each feature accordingly
 
     # Apktool decompile
-    Apktool.decompile(APK_PATH, OUTPUT_PATH)    
+    Apktool.decompile(APK_PATH, OUTPUT_PATH)
 
 if __name__=="__main__":
     main()
