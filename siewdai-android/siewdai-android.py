@@ -15,12 +15,21 @@ def main():
     Utils.setup_proj_dirs(proj_dirs_path)
 
     # Install necessary tools
+    t_install_apktool = threading.Thread(
+        target=Installer.install_apktool(resources_path),
+        name='t_install_apktool',
+        args=(resources_path))
+    
     t_install_jadx = threading.Thread(
         target=Installer.install_jadx(resources_path),
         name='install_jadx',
         args=(resources_path))
-    t_install_jadx.start()
     
+    t_install_apktool.start()
+    t_install_jadx.start()
+
+    t_install_apktool.join()
+    t_install_jadx.join()
 
     # Necessary config, apk checks
     

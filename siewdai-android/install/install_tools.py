@@ -11,6 +11,7 @@ from urllib.request import (
     Request,
     build_opener,
     getproxies,
+    urlretrieve
 )
 
 logging.basicConfig(
@@ -73,8 +74,10 @@ def is_jadx_installed(install_path):
             └── jadx-1.5.1-all.jar
     """
     if os.path.isdir(install_path + '/jadx'):
+        logger.info('JADX is already installed at %s', install_path + '/jadx')
         return True
     return False
+    
 
 def install_jadx(install_path, version='1.5.1'):
     if is_jadx_installed(install_path):
@@ -120,13 +123,40 @@ def install_jadx(install_path, version='1.5.1'):
             Path(tmp_zip_file.name).unlink()
 
 
+def install_apktool(install_path, version='2.11.1'):
+    """Install APKTool dynamically"""
+    try:
+        url = ('https://github.com/iBotPeaches/Apktool/releases/download/'
+               f'v{version}/apktool_{version}.jar')
+        apktool_dir = Path(install_path)  / 'apktool'        
+        apktool_path = apktool_dir / 'apktool.jar'
+
+        if not apktool_dir.exists():
+            os.makedirs(apktool_dir)
+            
+        if apktool_path.exists():
+            logger.info('APKTool is already installed at %s', apktool_dir)
+            return
+
+        logger.info('Downloading APKTool from %s', url)
+        urlretrieve(url, apktool_path)
+        logger.info('APKTool download complete.')
+
+        # Set execute permission
+        set_rwxr_xr_x_permission_recursively(apktool_dir)
+
+        logger.info('APKTool installed successfully')
+    except Exception:
+        logger.exception('Error during APKTool installation')
+
+
 def set_rwxr_xr_x_permission_recursively(directory_path):
     """Set execute permissions recursively."""
     if platform.system() == 'Windows':
         logger.info('Permission setting is skipped on non-Unix systems.')
         return
 
-    logger.info('Setting execute permission for JADX directory')
+    logger.info('Setting execute permission for directory')
     directory_path.chmod(0o755)
 
     # Recursively set permissions for all files and
