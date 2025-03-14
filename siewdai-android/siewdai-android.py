@@ -1,9 +1,10 @@
 #!/usr/bin/env python
-import install.install_tools as Installer
-import utils.utils as Utils
 import os
 import threading
 from constants import *
+import install.install_tools as Installer
+import utils.utils as Utils
+import decompiler.apktool as Apktool
 
 def main():
     # proj_path = os.path.dirname(os.path.realpath(__file__))
@@ -36,7 +37,9 @@ def main():
     
 
     # TODO run each feature accordingly
-    
+
+    # Apktool decompile
+    Apktool.decompile(APK_PATH, OUTPUT_PATH)    
 
 if __name__=="__main__":
     main()
