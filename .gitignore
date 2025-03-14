@@ -1,6 +1,6 @@
 # proj files
-apk/
-output/
+apk/*
+output/*
 !apk/.gitkeep
 !output/.gitkeep
 
