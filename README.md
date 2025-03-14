@@ -13,7 +13,10 @@ Apktool
 
 ## Usage
 
+### Configuring Jadx and Apktool
+
 The tool will dynamically download jadx from https://github.com/skylot/jadx/releases/download/v1.5.1/jadx-v1.5.1.zip unzip into the resources directory. This project comes with the necessary binaries in resources directory. If you require another jadx version, manually change accordingly before building the Docker image.
+
 ```
 resources
 └── jadx
@@ -30,7 +33,10 @@ resources
 
 This project also comes with APKTool v2.11.1 in resources directory. If needed change it accordingly before building Docker image.
 
+Change the following values in siewdai-android/constants.py
+- APKTOOL_BINARY
 
+### Placing APKs
 Place APK files into apk directory of this project
 
 Linux
