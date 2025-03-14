@@ -8,8 +8,28 @@ Android comes in many different confectionery flavors. We know sweet and sugar a
 ## Requirements
 
 Docker
+Jadx
+Apktool
 
 ## Usage
+
+The tool will dynamically download jadx from https://github.com/skylot/jadx/releases/download/v1.5.1/jadx-v1.5.1.zip unzip into the resources directory. This project comes with the necessary binaries in resources directory. If you require another jadx version, manually change accordingly before building the Docker image.
+```
+resources
+└── jadx
+    ├── LICENSE
+    ├── README.md
+    ├── bin
+    │   ├── jadx
+    │   ├── jadx-gui
+    │   ├── jadx-gui.bat
+    │   └── jadx.bat
+    └── lib
+        └── jadx-1.5.1-all.jar
+```
+
+This project also comes with APKTool v2.11.1 in resources directory. If needed change it accordingly before building Docker image.
+
 
 Place APK files into apk directory of this project
 
