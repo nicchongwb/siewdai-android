@@ -30,7 +30,12 @@ def decompile(APK_PATH, OUTPUT_PATH=OUTPUT_APKTOOL_PATH):
         try:
             if (len(APKTOOL_BINARY) > 0 and Path(APKTOOL_BINARY).exists()):
                 apktool_path = Path(APKTOOL_BINARY)
+
             output_dir = f"{OUTPUT_PATH}/{apk['name']}"
+            if not os.path.exists(output_dir):
+                logger.info(f"APKTool creating output directory at {output_dir}")
+                os.makedirs(output_dir)
+
             logger.info(f"APKTool decompiling {apk['name']} to {output_dir}")
         except Exception:
             logger.warning(f"APKTool failed to decompile {apk['name']}")
